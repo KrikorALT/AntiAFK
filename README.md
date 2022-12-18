@@ -1,2 +1,2 @@
 # AntiAFK
-antiafk for any ROBLOX game (More updates soon)
+AntiAFK for any ROBLOX game (More updates soon)
