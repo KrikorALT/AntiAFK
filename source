@@ -1,0 +1,54 @@
+
+local screen = Instance.new("ScreenGui")
+screen.Name = "AFKPreventer"
+screen.Parent = game.Players.LocalPlayer.PlayerGui
+
+local frame = Instance.new("Frame")
+frame.Name = "DraggableFrame"
+frame.Size = UDim2.new(0, 200, 0, 100)
+frame.Position = UDim2.new(0.5, -100, 0.5, -50)
+frame.Draggable = true
+frame.BackgroundTransparency = 0.5  -- Modify this line to set the transparency to 50%
+frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+frame.Parent = screen
+
+
+local toggleButton = Instance.new("TextButton")
+toggleButton.Name = "ToggleButton"
+toggleButton.Text = "Turn On"
+toggleButton.Size = UDim2.new(1, 0, 1, 0)
+toggleButton.Position = UDim2.new(0, 0, 0, 0)
+toggleButton.Parent = frame
+
+
+local afkPreventerOn = false
+
+
+local function toggleAFKPreventer()
+    if afkPreventerOn then
+        -- Turn the AFK preventer off
+        afkPreventerOn = false
+        toggleButton.Text = "Turn On"
+        print("AntiAFK off")
+    else
+        -- Turn the AFK preventer on
+        afkPreventerOn = true
+        toggleButton.Text = "Turn Off"
+        print("AntiAFK activated")
+    end
+end
+
+
+toggleButton.MouseButton1Click:Connect(toggleAFKPreventer)
+
+-
+while true do
+    
+    if afkPreventerOn then
+       
+        game.Players.LocalPlayer:GetMouse().CFrame = CFrame.new(Vector3.new(math.random(-500, 500), math.random(-500, 500), 0))
+    end
+
+    -- Wait for 1 minute before moving the mouse again
+    wait(60)
+end
