@@ -1,4 +1,3 @@
-
 local screen = Instance.new("ScreenGui")
 screen.Name = "AFKPreventer"
 screen.Parent = game.Players.LocalPlayer.PlayerGui
@@ -8,10 +7,9 @@ frame.Name = "DraggableFrame"
 frame.Size = UDim2.new(0, 150, 0, 75)
 frame.Position = UDim2.new(0.5, -100, 0.5, -50)
 frame.Draggable = true
-frame.BackgroundTransparency = 0.5  -- Modify this line to set the transparency to 50%
+frame.BackgroundTransparency = 0.5  -- Modify this line to set the transparency
 frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 frame.Parent = screen
-
 
 local toggleButton = Instance.new("TextButton")
 toggleButton.Name = "ToggleButton"
@@ -20,9 +18,7 @@ toggleButton.Size = UDim2.new(1, 0, 1, 0)
 toggleButton.Position = UDim2.new(0, 0, 0, 0)
 toggleButton.Parent = frame
 
-
 local afkPreventerOn = false
-
 
 local function toggleAFKPreventer()
     if afkPreventerOn then
@@ -35,12 +31,11 @@ local function toggleAFKPreventer()
         afkPreventerOn = true
         toggleButton.Text = "Turn Off"
         print("AntiAFK activated")
+        screen.Visible = false  -- Hide the UI
     end
 end
 
-
 toggleButton.MouseButton1Click:Connect(toggleAFKPreventer)
-
 
 while true do
     
