@@ -1,6 +1,6 @@
 local screen = Instance.new("ScreenGui")
 screen.Name = "AFKPreventer"
-screen.Parent = game.Players.LocalPlayer.PlayerGui
+screen.Parent = game.CoreGui
 
 local frame = Instance.new("Frame")
 frame.Name = "DraggableFrame"
