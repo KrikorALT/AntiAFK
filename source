@@ -41,7 +41,7 @@ end
 
 toggleButton.MouseButton1Click:Connect(toggleAFKPreventer)
 
--
+
 while true do
     
     if afkPreventerOn then
