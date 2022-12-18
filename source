@@ -1,6 +1,52 @@
+
+local keyEntryScreen = Instance.new("ScreenGui")
+keyEntryScreen.Name = "KeyEntryScreen"
+keyEntryScreen.Parent = game.CoreGui
+
+local keyEntryFrame = Instance.new("Frame")
+keyEntryFrame.Name = "KeyEntryFrame"
+keyEntryFrame.Size = UDim2.new(0, 300, 0, 200)
+keyEntryFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
+keyEntryFrame.Parent = keyEntryScreen
+
+local keyTextBox = Instance.new("TextBox")
+keyTextBox.Name = "KeyTextBox"
+keyTextBox.Size = UDim2.new(0.8, 0, 0.2, 0)
+keyTextBox.Position = UDim2.new(0.1, 0, 0.3, 0)
+keyTextBox.Parent = keyEntryFrame
+
+
+local submitButton = Instance.new("TextButton")
+submitButton.Name = "SubmitButton"
+submitButton.Text = "Submit"
+submitButton.Size = UDim2.new(0.8, 0, 0.2, 0)
+submitButton.Position = UDim2.new(0.1, 0, 0.6, 0)
+submitButton.Parent = keyEntryFrame
+
+
+local function submitKey()
+  -- Get the key from the text box
+  local enteredKey = keyTextBox.Text
+
+ 
+  if enteredKey == "Krik" then
+    -- If the key is correct, hide the key entry screen and show the main UI
+    keyEntryScreen.Visible = false
+    mainScreen.Visible = true
+  else
+    -- If the key is incorrect, display an error message
+    keyTextBox.Text = "Invalid key. Please try again."
+  end
+end
+
+
+submitButton.MouseButton1Click:Connect(submitKey)
+
+
 local screen = Instance.new("ScreenGui")
 screen.Name = "AFKPreventer"
 screen.Parent = game.CoreGui
+screen.Visible = false  -- Initially hide the main UI
 
 local frame = Instance.new("Frame")
 frame.Name = "DraggableFrame"
@@ -37,13 +83,11 @@ end
 
 toggleButton.MouseButton1Click:Connect(toggleAFKPreventer)
 
-
 local function disableIdleConnections()
   for i, v in pairs(getconnections(game.Players.LocalPlayer.Idled)) do
     v:Disable()
   end
 end
-
 
 game.Players.LocalPlayer.Idled:Connect(disableIdleConnections)
 
@@ -51,9 +95,8 @@ while true do
     
     if afkPreventerOn then
        
-        game.Players.LocalPlayer:GetMouse().CFrame = CFrame.new(Vector3.new(math.random(-500, 500), math.random(-500, 500), 0))
+        game.Players.LocalPlayer:GetMouse().CFrame = CFrame.new(Vector3.new(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
+        wait(0.1)
     end
-
-    -- Wait for 1 minute before moving the mouse again
-    wait(60)
 end
+
