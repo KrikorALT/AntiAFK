@@ -37,6 +37,16 @@ end
 
 toggleButton.MouseButton1Click:Connect(toggleAFKPreventer)
 
+
+local function disableIdleConnections()
+  for i, v in pairs(getconnections(game.Players.LocalPlayer.Idled)) do
+    v:Disable()
+  end
+end
+
+
+game.Players.LocalPlayer.Idled:Connect(disableIdleConnections)
+
 while true do
     
     if afkPreventerOn then
